@@ -15,7 +15,7 @@ import { getNetworkConfigById, getNetworkId } from 'src/config'
 import { ETHEREUM_LAYER, ETHEREUM_NETWORK } from 'src/config/networks/network.d'
 import { ZERO_ADDRESS } from 'src/logic/wallets/ethAddresses'
 import { calculateGasOf, EMPTY_DATA } from 'src/logic/wallets/ethTransactions'
-import { getWeb3, getNetworkIdFrom } from 'src/logic/wallets/getWeb3'
+import { getWeb3, getChainIdFrom } from 'src/logic/wallets/getWeb3'
 import { GnosisSafe } from 'src/types/contracts/gnosis_safe.d'
 import { ProxyFactory } from 'src/types/contracts/proxy_factory.d'
 import { CompatibilityFallbackHandler } from 'src/types/contracts/compatibility_fallback_handler.d'
@@ -177,7 +177,7 @@ export const getMasterCopyAddressFromProxyAddress = async (proxyAddress: string)
 
 export const instantiateSafeContracts = async () => {
   const web3 = getWeb3()
-  const networkId = (await getNetworkIdFrom(web3)).toString() as ETHEREUM_NETWORK
+  const networkId = (await getChainIdFrom(web3)).toString() as ETHEREUM_NETWORK
 
   // Create ProxyFactory Master Copy
   proxyFactoryMaster = getProxyFactoryContractInstance(web3, networkId)

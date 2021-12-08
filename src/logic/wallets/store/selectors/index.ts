@@ -28,8 +28,8 @@ export const shouldSwitchWalletChain = createSelector(
   currentChainId,
   (provider: ProviderState, currentChainId: ETHEREUM_NETWORK): boolean => {
     const account = provider.get('account')
-    const networkId = provider.get('network').toString()
-    return !!account && networkId !== currentChainId
+    const chainId = provider.get('chainId').toString()
+    return !!account && chainId !== currentChainId
   },
 )
 

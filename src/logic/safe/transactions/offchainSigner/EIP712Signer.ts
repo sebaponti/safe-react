@@ -1,7 +1,7 @@
 import { AbstractProvider } from 'web3-core'
 import semverSatisfies from 'semver/functions/satisfies'
 
-import { getWeb3, getNetworkIdFrom } from 'src/logic/wallets/getWeb3'
+import { getWeb3, getChainIdFrom } from 'src/logic/wallets/getWeb3'
 import { EMPTY_DATA } from 'src/logic/wallets/ethTransactions'
 import { TxArgs } from 'src/logic/safe/store/models/types/transaction'
 import { adjustV } from './utils'
@@ -68,7 +68,7 @@ export const generateTypedDataFrom = async ({
   valueInWei,
 }: SigningTxArgs) => {
   const web3 = getWeb3()
-  const networkId = await getNetworkIdFrom(web3)
+  const networkId = await getChainIdFrom(web3)
   const eip712WithChainId = semverSatisfies(safeVersion, '>=1.3.0')
 
   const typedData = {

@@ -64,6 +64,7 @@ export const getAccountFrom = async (web3Provider: Web3): Promise<string | null>
 }
 
 export const getNetworkIdFrom = (web3Provider: Web3): Promise<number> => web3Provider.eth.net.getId()
+export const getChainIdFrom = (web3Provider: Web3): Promise<number> => web3Provider.eth.getChainId()
 
 const isHardwareWallet = (walletName: string) =>
   sameAddress(WALLET_PROVIDER.LEDGER, walletName) || sameAddress(WALLET_PROVIDER.TREZOR, walletName)
@@ -84,6 +85,7 @@ export const isSmartContractWallet = async (web3Provider: Web3, account: string)
 export const getProviderInfo = async (web3Instance: Web3, providerName = 'Wallet'): Promise<ProviderProps> => {
   const account = (await getAccountFrom(web3Instance)) || ''
   const network = await getNetworkIdFrom(web3Instance)
+  const chainId = await getChainIdFrom(web3Instance)
   const smartContractWallet = await isSmartContractWallet(web3Instance, account)
   const hardwareWallet = isHardwareWallet(providerName)
   const available = Boolean(account)
@@ -94,6 +96,7 @@ export const getProviderInfo = async (web3Instance: Web3, providerName = 'Wallet
     loaded: true,
     account,
     network: network.toString() as ETHEREUM_NETWORK,
+    chainId: chainId.toString(),
     smartContractWallet,
     hardwareWallet,
   }

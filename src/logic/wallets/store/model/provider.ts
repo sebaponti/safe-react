@@ -8,6 +8,7 @@ export type ProviderProps = {
   available: boolean
   account: string
   network: ETHEREUM_NETWORK
+  chainId: string
   smartContractWallet: boolean
   hardwareWallet: boolean
 }
@@ -18,6 +19,7 @@ export const makeProvider = Record<ProviderProps>({
   available: false,
   account: '',
   network: ETHEREUM_NETWORK.UNKNOWN,
+  chainId: '',
   smartContractWallet: false,
   hardwareWallet: false,
 })
