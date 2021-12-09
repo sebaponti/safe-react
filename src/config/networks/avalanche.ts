@@ -8,19 +8,21 @@ import {
   NetworkConfig,
   WALLETS,
 } from 'src/config/networks/network.d'
+import { ETHERSCAN_API_KEY } from 'src/utils/constants'
 
 const baseConfig: EnvironmentSettings = {
   clientGatewayUrl: 'http://localhost:8002/v1',
   txServiceUrl: 'http://localhost:8000/api/v1',
+  //gasPrice: 25e9,
   gasPriceOracles: [
     {
-      url: '',
-      gasParameter: 'standard',
-      gweiFactor: '25e9',
+      url: `https://api.snowtrace.io/api?module=gastracker&action=gasoracle&apikey=${ETHERSCAN_API_KEY}`,
+      gasParameter: 'SafeGasPrice',
+      gweiFactor: '1e9',
     },
   ],
-  rpcServiceUrl: 'https://api.avax.network/ext/bc/C/rpc',
   safeAppsRpcServiceUrl: 'https://api.avax.network/ext/bc/C/rpc',
+  rpcServiceUrl: 'https://api.avax.network/ext/bc/C/rpc',
   networkExplorerName: 'Avalanche C-Chain Explorer',
   networkExplorerUrl: 'https://snowtrace.io/',
   networkExplorerApiUrl: 'https://snowtrace.io/',

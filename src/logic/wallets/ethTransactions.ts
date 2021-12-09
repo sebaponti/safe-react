@@ -12,7 +12,7 @@ export const EMPTY_DATA = '0x'
  * The magic number is from web3.js
  * @see https://github.com/ChainSafe/web3.js/blob/c70722b919ac81e45760b9648c4b92fd8d0eeee1/packages/web3-core-method/src/index.js#L869
  */
-const FIXED_GAS_FEE = '2.5'
+const FIXED_GAS_FEE = '25'
 
 const fetchGasPrice = async (gasPriceOracle: GasPriceOracle): Promise<string> => {
   const { url, gasParameter, gweiFactor } = gasPriceOracle
